@@ -18,8 +18,8 @@ if(!isset($_SESSION["username"]))
 {
 	header("location:login.php");
 }
+?>  
 
-?>
 
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -39,20 +39,23 @@ if(!isset($_SESSION["username"]))
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="../assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
 
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-    <link href="../assets/css/theme.css" rel="stylesheet" />
-    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <script src="assets/js/sweetalert2.all.min.js"></script>
 
   </head>
 
@@ -64,15 +67,15 @@ if(!isset($_SESSION["username"]))
     <!-- ===============================================-->
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
-        <div class="container"><a class="navbar-brand fsize" href="home.php">AngoVisto</a>
+        <div class="container"><a class="navbar-brand fsize" href="index.php">AngoVisto</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#service">Serviços</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="admin.php">Solicitação</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#booking">Sobre</a></li>              
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="admContacto.php">Contacto</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="../php/logout.php">Log out</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.php#service">Serviços</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="vistoManager.php">Agendamento</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.php#booking">Sobre</a></li>              
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="contacto.php">Contacto</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="php/logout.php">Log out</a></li>
               <li class="nav-item dropdown px-3 px-lg-0"> <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">EN</a>
                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="#!">EN</a></li>
@@ -83,84 +86,43 @@ if(!isset($_SESSION["username"]))
           </div>
         </div>
       </nav>
+      
+      
+      <!--  Body Wrapper -->
+  <div class="page-wrapper mt-5" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <h2 class="text-center mt-5 fs-5 text-primary">Entrar em Contacto</h2>
 
 
-<section style="padding-top: 10rem;">
-
-  <div class="container pt-5 vh-100" data-aos="fade-up" data-aos-delay="100">
-    <h1 class="text-center mb-5" id="addProductBtn">Solicitação de Vistos</h1>
-  <div class="d-flex mt-5 w-100">
-  
-</div>
-  <table class="table mt-5">
-    <thead>
-      <tr>
-        <th scope="col">Nº Passport</th>
-        <th scope="col">Foto</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Data Nasc</th>
-        <th scope="col">Sexo</th>
-        <th scope="col">Nacionalidade</th>
-        <th scope="col">Entrada</th>
-        <th scope="col">Tipo/Class</th>
-        <th scope="col">Data Criação</th>
-        <th scope="col">Acção</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <?php
-        $sql = "SELECT * FROM tbagenda"; // Substitua 'produtos' pelo nome da sua tabela
-                
-          $result = mysqli_query($conexao, $sql);
-
-            if ($result->num_rows > 0) {
-                while ($linha = $result->fetch_assoc()) {    
-                  echo " 
-                    <tr>
-                      <td>" .$linha['id'] . "</td>
-                      <td> <img src='../img/".$linha['foto']." ' width=80 height=80 ></td>
-                      <td>" .$linha['nome']. "</td>
-                      <td>" .$linha['data_Nasc']. "</td>
-                      <td>" .$linha['sexo']. "</td>
-                      <td>" .$linha['country']. "</td>
-                      <td>" .$linha['entrada']. "</td>
-                      <td>" .$linha['tipo']. "</td>
-                      <td>" .$linha['data_create']. "</td>
-                      <td> 
-                        <a href='visto.php?id=".$linha['id']."&
-                        imagem=".$linha['foto']."&
-                        nome=".$linha['nome']."&
-                        dataNasc=".$linha['data_Nasc']."&
-                        sexo=".$linha['sexo']."&
-                        country=".$linha['country']."&
-                        entrada=".$linha['entrada']."&
-                        tipo=".$linha['tipo']."&
-                        create=".$linha['data_create']."'>
-
-                          <button class='btn btn-success'>Verificar</button>
-                        </a>
-
-                      </td>
-                    </tr>
-
-                 ";
-              }
-            }
-      ?>
-
-  </tbody>
-</table>        
-</div>
-
-
+                <form id="whatsappForm" autocomplete="off" enctype="multipart/form-data">
+             <div class="form-group mt-2">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control btnOnly" id="nome" placeholder="Digite seu nome completo" required>
+          </div>
+          <div class="form-group mt-3">
+              <label for="tel">Celular</label>
+              <input type="tel" class="form-control" id="telefone" placeholder="+244 999 999 999" required>
+          </div>
+            <div class="form-group mt-3">
+                <label for="mensagem">Mensagem</label>
+                <textarea class="form-control" id="mensagem" placeholder="Digite sua mensagem aqui..." required></textarea>
+          <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-primary">Enviar para WhatsApp</button>
+          </div>
+        </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
-
-
-
-
-
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
@@ -198,7 +160,7 @@ if(!isset($_SESSION["username"]))
             <div class="col-lg-3 col-md-5 col-12 mb-4 mb-md-6 mb-lg-0 order-lg-4 order-md-1">
               <div class="icon-group mb-4"> <a class="text-decoration-none icon-item shadow-social" id="facebook" href="#!"><i class="fab fa-facebook-f"> </i></a><a class="text-decoration-none icon-item shadow-social" id="instagram" href="#!"><i class="fab fa-instagram"> </i></a><a class="text-decoration-none icon-item shadow-social" id="twitter" href="#!"><i class="fab fa-twitter"> </i></a></div>
               <h4 class="fw-medium font-sans-serif text-secondary mb-3">Discover our app</h4>
-              <div class="d-flex align-items-center"> <a href="#!"> <img class="me-2" src="../assets/img/play-store.png" alt="play store" /></a><a href="#!"> <img src="../assets/img/apple-store.png" alt="apple store" /></a></div>
+              <div class="d-flex align-items-center"> <a href="#!"> <img class="me-2" src="assets/img/play-store.png" alt="play store" /></a><a href="#!"> <img src="assets/img/apple-store.png" alt="apple store" /></a></div>
             </div>
           </div>
         </div><!-- end of .container-->
@@ -217,16 +179,18 @@ if(!isset($_SESSION["username"]))
     <!-- ===============================================-->
 
 
+
+
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="../vendors/@popperjs/popper.min.js"></script>
-    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../vendors/is/is.min.js"></script>
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="../vendors/fontawesome/all.min.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="./js/whatsapp.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap" rel="stylesheet">
   </body>
