@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Caso o usuário não esteja logado, redireciona para o index
+  include('./php/verificar_login.php');
+
+  $id = $_SESSION['id'];
 
 if(!isset($_SESSION["username"]))
 {
@@ -56,9 +60,9 @@ if(!isset($_SESSION["username"]))
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#service">Serviços</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="agenda.php">Agendamento</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="vistoManager.php">Agendamento</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#booking">Sobre</a></li>              
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#contacto">Contacto</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="contacto.php">Contacto</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="php/logout.php">Log out</a></li>
               <li class="nav-item dropdown px-3 px-lg-0"> <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">EN</a>
                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;" aria-labelledby="navbarDropdown">
@@ -79,9 +83,9 @@ if(!isset($_SESSION["username"]))
           <div class="row align-items-center">
             <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 hero-img" src="assets/img/hero/hero-img.png" alt="hero-header" /></div>
             <div class="col-md-7 col-lg-6 text-md-start text-center py-6">
-              <h4 class="fw-bold text-danger mb-3">Best Destinations around the world</h4>
-              <h1 class="hero-title">Travel, enjoy and live a new and full life</h1>
-              <p class="mb-4 fw-medium">Built Wicket longer admire do barton vanity itself do in it.<br class="d-none d-xl-block" />Preferred to sportsmen it engrossed listening. Park gate<br class="d-none d-xl-block" />sell they west hard for the.</p>
+              <h4 class="fw-bold text-danger mb-3">Os melhores destinos do mundo</h4>
+              <h1 class="hero-title">Viaje, aproveite e viva uma vida nova e plena.</h1>
+              <p class="mb-4 fw-medium">Construíndo futuro não admira mais a vaidade em si.<br class="d-none d-xl-block" />Preferida aos desportistas, a escuta era envolvente. Portão do parque<br class="d-none d-xl-block" />eles vendem o oeste com dificuldade para o.</p>
               <div class="text-center text-md-start"> <a class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow" href="#!" role="button">Find out more</a>
                 <div class="w-100 d-block d-md-none"></div><a href="#!" role="button" data-bs-toggle="modal" data-bs-target="#popupVideo"><span class="btn btn-danger round-btn-lg rounded-circle me-3 danger-btn-shadow"> <img src="assets/img/hero/play.svg" width="15" alt="paly"/></span></a><span class="fw-medium">Play Demo</span>
                 <div class="modal fade" id="popupVideo" tabindex="-1" aria-labelledby="popupVideo" aria-hidden="true">
@@ -105,39 +109,39 @@ if(!isset($_SESSION["username"]))
         <div class="container">
           <div class="position-absolute z-index--1 end-0 d-none d-lg-block"><img src="assets/img/category/shape.svg" style="max-width: 200px" alt="service" /></div>
           <div class="mb-7 text-center">
-            <h5 class="text-secondary">CATEGORY </h5>
-            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">We Offer Best Services</h3>
+            <h5 class="text-secondary">CATEGORIA </h5>
+            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Oferecemos os melhores serviços</h3>
           </div>
           <div class="row">
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon1.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Calculated Weather</h4>
-                  <p class="mb-0 fw-medium">Built Wicket longer admire do barton vanity itself do in it.</p>
+                  <h4 class="mb-3">Clima Calculado</h4>
+                  <p class="mb-0 fw-medium">Construíndo futuro não admira mais a vaidade em si.</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon2.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Best Flights</h4>
-                  <p class="mb-0 fw-medium">Engrossed listening. Park gate sell they west hard for the.</p>
+                  <h4 class="mb-3">Melhores Voos</h4>
+                  <p class="mb-0 fw-medium">Escuta envolvente. Portão do parque vende eles oeste com dificuldade para o.</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon3.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Local Events</h4>
-                  <p class="mb-0 fw-medium">Barton vanity itself do in it. Preferd to men it engrossed listening.</p>
+                  <h4 class="mb-3">Eventos Locais</h4>
+                  <p class="mb-0 fw-medium">A própria vaidade se manifestava nisso. Preferia-se aos homens, absorta em ouvir.</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon4.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Customization</h4>
-                  <p class="mb-0 fw-medium">We deliver outsourced aviation services for military customers</p>
+                  <h4 class="mb-3">Personalização</h4>
+                  <p class="mb-0 fw-medium">Personalização de serviços de aviação terceirizados para clientes militares</p>
                 </div>
               </div>
             </div>
@@ -158,17 +162,17 @@ if(!isset($_SESSION["username"]))
         <div class="container">
           <div class="position-absolute start-100 bottom-0 translate-middle-x d-none d-xl-block ms-xl-n4"><img src="assets/img/dest/shape.svg" alt="destination" /></div>
           <div class="mb-7 text-center">
-            <h5 class="text-secondary">Top Selling </h5>
-            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Top Destinations</h3>
+            <h5 class="text-secondary">Top Vendas </h5>
+            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Top Destinos</h3>
           </div>
           <div class="row">
             <div class="col-md-4 mb-4">
               <div class="card overflow-hidden shadow"> <img class="card-img-top" src="assets/img/dest/dest1.jpg" alt="Rome, Italty" />
                 <div class="card-body py-4 px-3">
                   <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Rome, Italty</a></h4><span class="fs-1 fw-medium">$5,42k</span>
+                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Roma, Italia</a></h4><span class="fs-1 fw-medium">50.000,00 kz</span>
                   </div>
-                  <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">10 Days Trip</span></div>
+                  <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">Viagem de 10 dias</span></div>
                 </div>
               </div>
             </div>
@@ -176,9 +180,9 @@ if(!isset($_SESSION["username"]))
               <div class="card overflow-hidden shadow"> <img class="card-img-top" src="assets/img/dest/dest2.jpg" alt="London, UK" />
                 <div class="card-body py-4 px-3">
                   <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">London, UK</a></h4><span class="fs-1 fw-medium">$4.2k</span>
+                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Londres, RU</a></h4><span class="fs-1 fw-medium">42.000,00 kz</span>
                   </div>
-                  <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">12 Days Trip</span></div>
+                  <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">Viagem de 12 dias</span></div>
                 </div>
               </div>
             </div>
@@ -186,9 +190,9 @@ if(!isset($_SESSION["username"]))
               <div class="card overflow-hidden shadow"> <img class="card-img-top" src="assets/img/dest/dest3.jpg" alt="Full Europe" />
                 <div class="card-body py-4 px-3">
                   <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Full Europe</a></h4><span class="fs-1 fw-medium">$15k</span>
+                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Europa completa</a></h4><span class="fs-1 fw-medium">150.000,00 kz</span>
                   </div>
-                  <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">28 Days Trip</span></div>
+                  <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">Viagem de 28 dias</span></div>
                 </div>
               </div>
             </div>
@@ -210,28 +214,28 @@ if(!isset($_SESSION["username"]))
           <div class="row align-items-center">
             <div class="col-lg-6">
               <div class="mb-4 text-start">
-                <h5 class="text-secondary">Easy and Fast </h5>
-                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Book your next trip in 3 easy steps</h3>
+                <h5 class="text-secondary">Fácil e rápido </h5>
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Crie seu passaporte de viagem em 3 passos fáceis</h3>
               </div>
               <div class="d-flex align-items-start mb-5">
                 <div class="bg-primary me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/selection.svg" width="22" alt="steps" /></div>
                 <div class="flex-1">
-                  <h5 class="text-secondary fw-bold fs-0">Choose Destination</h5>
-                  <p>Choose your favourite place. No matter <br class="d-none d-sm-block"> where you travel inside the World.</p>
+                  <h5 class="text-secondary fw-bold fs-0">Faça Registo ou Login</h5>
+                  <p>Crie a sua conta em segundos. Ganhe acesso<br class="d-none d-sm-block">exclusivo para gerir todos os seus pedidos.</p>
                 </div>
               </div>
               <div class="d-flex align-items-start mb-5">
                 <div class="bg-danger me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/water-sport.svg" width="22" alt="steps" /></div>
                 <div class="flex-1">
-                  <h5 class="text-secondary fw-bold fs-0">Make Payment</h5>
-                  <p>After find your perfect spot, make your <br class="d-none d-sm-block"> payment and get ready to travel.</p>
+                  <h5 class="text-secondary fw-bold fs-0">Escolha o seu Tipo de Passaporte</h5>
+                  <p>Comum, Diplomático ou Especial? <br class="d-none d-sm-block"> o serviço ao seu perfil.</p>
                 </div>
               </div>
               <div class="d-flex align-items-start mb-5">
                 <div class="bg-info me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/taxi.svg" width="22" alt="steps" /></div>
                 <div class="flex-1">
-                  <h5 class="text-secondary fw-bold fs-0">Reach Airport on Selected Date</h5>
-                  <p>Lastly, you have to arrive at the airport <br class="d-none d-sm-block"> on time and enjoy the vacation.</p>
+                  <h5 class="text-secondary fw-bold fs-0">Solicite o Visto e Aguarde</h5>
+                  <p>Depois de selecionar o tipo de passaporte, <br class="d-none d-sm-block">envie o seu pedido e aguarde a aprovação.</p>
                 </div>
               </div>
             </div>
@@ -240,21 +244,21 @@ if(!isset($_SESSION["username"]))
                 <div class="position-absolute z-index--1 me-10 me-xxl-0" style="right:-160px;top:-210px;"> <img src="assets/img/steps/bg.png" style="max-width:550px;" alt="shape" /></div>
                 <div class="card-body p-3"> <img class="mb-4 mt-2 rounded-2 w-100" src="assets/img/steps/booking-img.jpg" alt="booking" />
                   <div>
-                    <h5 class="fw-medium">Trip To Greece</h5>
-                    <p class="fs--1 mb-3 fw-medium">14-29 June | by Robbin joseph</p>
+                    <h5 class="fw-medium">Viagem à Grécia</h5>
+                    <p class="fs--1 mb-3 fw-medium">14-29 Junho | by Robbin joseph</p>
                     <div class="icon-group mb-4"> <span class="btn icon-item"> <img src="assets/img/steps/leaf.svg" alt=""/></span><span class="btn icon-item"> <img src="assets/img/steps/map.svg" alt=""/></span><span class="btn icon-item"> <img src="assets/img/steps/send.svg" alt=""/></span>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
-                      <div class="d-flex align-items-center mt-n1"><img class="me-3" src="assets/img/steps/building.svg" width="18" alt="building" /><span class="fs--1 fw-medium">24 people going</span></div>
+                      <div class="d-flex align-items-center mt-n1"><img class="me-3" src="assets/img/steps/building.svg" width="18" alt="building" /><span class="fs--1 fw-medium">24 pessoas vão</span></div>
                       <div class="show-onhover position-relative">
                         <div class="card hideEl shadow position-absolute end-0 start-xl-50 bottom-100 translate-xl-middle-x ms-3" style="width: 260px;border-radius:18px;">
                           <div class="card-body py-3">
                             <div class="d-flex">
                               <div style="margin-right: 10px"> <img class="rounded-circle" src="assets/img/steps/favorite-placeholder.png" width="50" alt="favorite" /></div>
                               <div>
-                                <p class="fs--1 mb-1 fw-medium">Ongoing </p>
-                                <h5 class="fw-medium mb-3">Trip to rome</h5>
-                                <h6 class="fs--1 fw-medium mb-2"><span>40%</span> completed</h6>
+                                <p class="fs--1 mb-1 fw-medium">Em andamento </p>
+                                <h5 class="fw-medium mb-3">Viagem a Roma</h5>
+                                <h6 class="fs--1 fw-medium mb-2"><span>40%</span> concluído</h6>
                                 <div class="progress" style="height: 6px;">
                                   <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -287,8 +291,8 @@ if(!isset($_SESSION["username"]))
           <div class="row">
             <div class="col-lg-5">
               <div class="mb-8 text-start">
-                <h5 class="text-secondary">Testimonials </h5>
-                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">What people say about Us.</h3>
+                <h5 class="text-secondary">Depoimentos </h5>
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">O que as pessoas dizem sobre nós.</h3>
               </div>
             </div>
             <div class="col-lg-1"></div>
@@ -305,7 +309,7 @@ if(!isset($_SESSION["username"]))
                       <div class="card shadow" style="border-radius:10px;">
                         <div class="position-absolute start-0 top-0 translate-middle"> <img class="rounded-circle fit-cover" src="assets/img/testimonial/author.png" height="65" width="65" alt="" /></div>
                         <div class="card-body p-4">
-                          <p class="fw-medium mb-4">&quot;On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.&quot;</p>
+                          <p class="fw-medium mb-4">&quot;O cadastro mais rápido que já fiz! Fiquei impressionado com a facilidade do Passo 1. Em menos de dois minutos já tinha o meu painel organizado. É muito bom ter um lugar seguro para acompanhar tudo sem precisar de trocar dezenas de e-mails.&quot;</p>
                           <h5 class="text-secondary">Mike taylor</h5>
                           <p class="fw-medium fs--1 mb-0">Lahore, Pakistan</p>
                         </div>
@@ -316,7 +320,7 @@ if(!isset($_SESSION["username"]))
                       <div class="card shadow" style="border-radius:10px;">
                         <div class="position-absolute start-0 top-0 translate-middle"> <img class="rounded-circle fit-cover" src="assets/img/testimonial/author2.png" height="65" width="65" alt="" /></div>
                         <div class="card-body p-4">
-                          <p class="fw-medium mb-4">&quot;Jadoo is recognized as one of the finest travel agency in the world. When it came to planning a trip, I found them to be dependable.&quot;</p>
+                          <p class="fw-medium mb-4">&quot;Finalmente alguém que entende de Passaportes Oficiais Tive dificuldades noutras agências por ter um passaporte de serviço, mas aqui o Passo 2 é incrível. O sistema identificou logo as minhas necessidades específicas e a consultoria de marketing deles realmente entrega o que promete.&quot;</p>
                           <h5 class="text-secondary">Thomas Wagon</h5>
                           <p class="fw-medium fs--1 mb-0">CEO of Red Button</p>
                         </div>
@@ -327,7 +331,7 @@ if(!isset($_SESSION["username"]))
                       <div class="card shadow" style="border-radius:10px;">
                         <div class="position-absolute start-0 top-0 translate-middle"> <img class="rounded-circle fit-cover" src="assets/img/testimonial/author3.png" height="65" width="65" alt="" /></div>
                         <div class="card-body p-4">
-                          <p class="fw-medium mb-4">&quot;On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.&quot;</p>
+                          <p class="fw-medium mb-4">&quot;Zero burocracia, só tive de esperar pelo e-mail. Fiz a solicitação no Passo 3 e relaxei. O melhor benefício é a tranquilidade de saber que especialistas estão a tratar de tudo. Recebi o meu visto antes do prazo esperado. Recomendo muito!.&quot;</p>
                           <h5 class="text-secondary">Kelly Willium</h5>
                           <p class="fw-medium fs--1 mb-0">Khulna, Bangladesh</p>
                         </div>
@@ -394,7 +398,7 @@ if(!isset($_SESSION["username"]))
             <div class="position-absolute start-0 bottom-0 ms-3 z-index--1 d-none d-sm-block"> <img src="assets/img/cta/shape-bg1.png" style="max-width: 340px;" alt="cta shape" /></div>
             <div class="row justify-content-center">
               <div class="col-lg-8 col-md-10">
-                <h2 class="text-secondary lh-1-7 mb-7">Subscribe to get information, latest news and other interesting offers about Cobham</h2>
+                <h2 class="text-secondary lh-1-7 mb-7">Inscreva-se para receber informações, as últimas notícias e outras ofertas interessantes sobre AngoVisto.</h2>
                 <form class="row g-3 align-items-center w-lg-75 mx-auto">
                   <div class="col-sm">
                     <div class="input-group-icon">
@@ -402,7 +406,7 @@ if(!isset($_SESSION["username"]))
                     </div>
                   </div>
                   <div class="col-sm-auto">
-                    <button class="btn btn-danger orange-gradient-btn fs--1">Subscribe</button>
+                    <button class="btn btn-danger orange-gradient-btn fs--1">Inscrever</button>
                   </div>
                 </form>
               </div>

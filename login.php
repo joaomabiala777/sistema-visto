@@ -67,6 +67,7 @@ if($conexao===false)
                   {	
 
                     $_SESSION["username"]=$username;
+                    $_SESSION['id'] = $row['id'];
 
                     header("location:index.php");
                   }
@@ -85,7 +86,7 @@ if($conexao===false)
                             Swal.fire({
                             icon: 'error',
                             title: 'Erro!',
-                            text: 'Palavra pass ou Email errado!',
+                            text: 'Palavra-passe ou Usuario errado!',
                             confirmButtonText: 'OK'
                         }).then(() => {
                             window.location.href = 'login.php';
