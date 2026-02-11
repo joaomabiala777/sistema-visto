@@ -19,6 +19,7 @@ country VARCHAR(50),
 entrada VARCHAR(50),
 tipo VARCHAR(50),
 foto VARCHAR(255),
+estado ENUM('Pendente','Aprovado','Recusado') DEFAULT 'Pendente',
 data_create date default (current_date)
 );
 
