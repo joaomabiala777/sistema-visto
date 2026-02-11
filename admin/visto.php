@@ -30,39 +30,47 @@ $entrada = isset($_GET['entrada']) ? $_GET['entrada'] : '';
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $create = isset($_GET['create']) ? $_GET['create'] : '';
 
-if($_SERVER["REQUEST_METHOD"]=="POST")
-{
-	$id=$_POST["id"];
-	$nome=$_POST["nome"];
-  $foto=$_POST["foto"];
-  $dataNasc=$_POST["data_Nasc"];
-  $sexo=$_POST["sexo"];
-  $country=$_POST["country"];
-  $entrada=$_POST["entrada"];
-  $tipo=$_POST["tipo"];
-  $dataVal=$_POST["create"];
-  $dataExp=$_POST["dataExp"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$sql="INSERT INTO tbvisto(id, nome, data_Nasc, sexo, country, entrada, tipo, foto, data_create, data_exp) 
-VALUES('".null."', '".$nome."', '".$dataNasc."', '".$sexo."', '".$country."', '".$entrada."', '".$tipo."', '".$foto."', '".$dataVal."', '".$dataExp."') ";
+    $id = $_POST['id'];
+    $acao = $_POST['acao'];
 
-$result=mysqli_query($conexao,$sql);
+    if ($acao == "recusar") {
 
-	if(!$result)
-	{	
-		echo "<script>
-            alert('erro ao Registrar ');
+        $sql = "UPDATE tbagenda SET estado='Recusado' WHERE id='$id'";
+        mysqli_query($conexao, $sql);
+
+        echo "<script>
+            alert('Pedido recusado!');
             window.location.href='admin.php';
-          </script>";
+        </script>";
+        exit;
 
-	} else {
-    
-    header("Location: page.php?id=$id&nome=$nome&dataNasc=$dataNasc&sexo=$sexo&country=$country&entrada=$entrada&tipo=$tipo&foto=$foto&create=$dataVal&dataExp=$dataExp");
-		
-	}
-    
-  
-}
+    }
+
+    if ($acao == "aprovar") {
+
+        $nome=$_POST["nome"];
+        $foto=$_POST["foto"];
+        $dataNasc=$_POST["data_Nasc"];
+        $sexo=$_POST["sexo"];
+        $country=$_POST["country"];
+        $entrada=$_POST["entrada"];
+        $tipo=$_POST["tipo"];
+        $dataVal=$_POST["create"];
+        $dataExp=$_POST["dataExp"];
+
+        $sql="INSERT INTO tbvisto(nome,data_Nasc,sexo,country,entrada,tipo,foto,data_create,data_exp)
+              VALUES('$nome','$dataNasc','$sexo','$country','$entrada','$tipo','$foto','$dataVal','$dataExp')";
+
+        mysqli_query($conexao, $sql);
+
+        mysqli_query($conexao, "UPDATE tbagenda SET estado='Aprovado' WHERE id='$id'");
+
+        header("Location: page.php?id=$id&nome=$nome&dataNasc=$dataNasc&sexo=$sexo&country=$country&entrada=$entrada&tipo=$tipo&foto=$foto&create=$dataVal&dataExp=$dataExp");
+        exit;
+    }
+  }
 
 ?>
 
@@ -116,7 +124,7 @@ $result=mysqli_query($conexao,$sql);
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#service">Serviços</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#booking">Sobre</a></li>              
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#contacto">Contacto</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="admContacto.php">Contacto</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="../php/logout.php">Log out</a></li>
               <li class="nav-item dropdown px-3 px-lg-0"> <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">EN</a>
                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;" aria-labelledby="navbarDropdown">
@@ -174,9 +182,12 @@ $result=mysqli_query($conexao,$sql);
                   </div>
                   <div class="modal-footer">
                     <a href="admin.php">
-                      <button type="button" class="btn btn-danger">Voltar</button>
+                      <button type="button" class="btn btn-secondary">Voltar</button>
                     </a>
-                    <button type="submit" class="btn btn-primary">Gerar Passport</button>
+                    
+                    <button type="submit" name="acao" value="recusar" class="btn btn-danger">Recusar</button>
+                    <button type="submit" name="acao" value="aprovar" class="btn btn-primary">Gerar Passport</button>
+                    
                   </div>
               </form>
               </div>
