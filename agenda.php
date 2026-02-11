@@ -16,6 +16,96 @@ if(!isset($_SESSION["username"])){
 	exit;
 }
 
+<<<<<<< HEAD
+=======
+$editar = false;
+$dados = null;
+
+/* =====================
+   MODO EDITAR
+===================== */
+if(isset($_GET['id'])){
+	$editar = true;
+	$id = intval($_GET['id']);
+
+	$sql = "SELECT * FROM tbagenda WHERE id=$id";
+	$res = mysqli_query($conexao,$sql);
+	$dados = mysqli_fetch_assoc($res);
+
+	if(!$dados){
+		echo "<script>alert('Registro não encontrado');window.location='agenda.php';</script>";
+		exit;
+	}
+}
+
+/* =====================
+   SALVAR
+===================== */
+if(isset($_POST["submit"])){
+
+	$nome      = $_POST["nome"];
+	$dataNasc = $_POST["dataNasc"];
+	$sexo      = $_POST["sexoType"];
+	$country   = $_POST["country"];
+	$entrada   = $_POST["entrada"];
+	$tipo      = $_POST["tipo"];
+
+	$newImageName = $editar ? $dados['foto'] : null;
+
+	if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0){
+
+		$fileName = $_FILES["image"]["name"];
+		$fileSize = $_FILES["image"]["size"];
+		$tmpName  = $_FILES["image"]["tmp_name"];
+
+		$validImageExtension = ['jpg','jpeg','png'];
+		$ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+		if(!in_array($ext,$validImageExtension)){
+			echo "<script>alert('Formato inválido');</script>";
+			exit;
+		}
+
+		if($fileSize > 1000000){
+			echo "<script>alert('Imagem muito grande');</script>";
+			exit;
+		}
+
+		$newImageName = uniqid().".".$ext;
+		move_uploaded_file($tmpName,"img/".$newImageName);
+	}
+
+	if($editar){
+
+		$id = intval($_POST['id']);
+
+		$sql = "UPDATE tbagenda SET
+				nome='$nome',
+				data_Nasc='$dataNasc',
+				sexo='$sexo',
+				country='$country',
+				entrada='$entrada',
+				tipo='$tipo',
+				foto='$newImageName'
+				WHERE id=$id";
+
+	}else{
+
+		$sql = "INSERT INTO tbagenda
+				(nome,data_Nasc,sexo,country,entrada,tipo,foto)
+				VALUES
+				('$nome','$dataNasc','$sexo','$country','$entrada','$tipo','$newImageName')";
+	}
+
+	mysqli_query($conexao,$sql);
+
+	echo "<script>
+		alert('Salvo com sucesso!');
+		window.location='agenda.php';
+	</script>";
+	exit;
+}
+>>>>>>> 0538cfe88d55e73395f641bf33af31651e2e5615
 ?>
 
 <!DOCTYPE html>
