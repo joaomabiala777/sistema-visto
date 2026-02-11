@@ -72,7 +72,7 @@ if(!isset($_SESSION["username"]))
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.php#service">Serviços</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="agenda.php">Agendamento</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="vistoManager.php">Agendamento</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.php#booking">Sobre</a></li>              
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.php#contacto">Contacto</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="php/logout.php">Log out</a></li>
