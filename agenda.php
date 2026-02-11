@@ -6,17 +6,10 @@ $db="visto_db";
 
 session_start();
 
-
 $conexao=mysqli_connect($host,$user,$password,$db);
-
 if($conexao===false){
 	die("connection error");
 }
-
-// Caso o usuário não esteja logado, redireciona para o index
-  include('./php/verificar_login.php');
-
-  $id = $_SESSION['id'];
 
 if(!isset($_SESSION["username"])){
 	header("location:login.php");
@@ -170,9 +163,9 @@ if(isset($_POST["submit"])){
 	}else{
 
 		$sql = "INSERT INTO tbagenda
-				(nome,data_Nasc,sexo,country,entrada,tipo,foto, id)
+				(nome,data_Nasc,sexo,country,entrada,tipo,foto)
 				VALUES
-				('$nome','$dataNasc','$sexo','$country','$entrada','$tipo','$newImageName', '$id')";
+				('$nome','$dataNasc','$sexo','$country','$entrada','$tipo','$newImageName')";
 	}
 
 	mysqli_query($conexao,$sql);

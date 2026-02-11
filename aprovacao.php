@@ -14,11 +14,6 @@ if($conexao===false)
 	die("connection error");
 }
 
-// Caso o usuário não esteja logado, redireciona para o index
-  include('./php/verificar_login.php');
-
-  $id = $_SESSION['id'];
-
 if(!isset($_SESSION["username"]))
 {
 	header("location:login.php");
@@ -116,7 +111,7 @@ if(!isset($_SESSION["username"]))
                 </thead>
                 <tbody class="table-group-divider">
                     <?php
-                        $sql = "SELECT * FROM tbagenda WHERE id='{$id}'"; // Substitua 'produtos' pelo nome da sua tabela
+                        $sql = "SELECT * FROM tbagenda"; // Substitua 'produtos' pelo nome da sua tabela
                                 
                         $result = mysqli_query($conexao, $sql);
 

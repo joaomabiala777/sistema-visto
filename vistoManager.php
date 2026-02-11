@@ -14,11 +14,6 @@ if($conexao===false)
 	die("connection error");
 }
 
-// Caso o usuário não esteja logado, redireciona para o index
-  include('./php/verificar_login.php');
-
-  $id = $_SESSION['id'];
-
 if(!isset($_SESSION["username"]))
 {
 	header("location:login.php");
