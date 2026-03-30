@@ -135,7 +135,8 @@ if(!isset($_SESSION["username"]))
                         country=".$linha['country']."&
                         entrada=".$linha['entrada']."&
                         tipo=".$linha['tipo']."&
-                        create=".$linha['data_create']."'>
+                        create=".$linha['data_create']."
+                        id=".$linha['id']."'>
 
                           <button class='btn btn-success'>Verificar</button>
                         </a>

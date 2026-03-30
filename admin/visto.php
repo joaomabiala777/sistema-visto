@@ -29,6 +29,8 @@ $country = isset($_GET['country']) ? $_GET['country'] : '';
 $entrada = isset($_GET['entrada']) ? $_GET['entrada'] : '';
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $create = isset($_GET['create']) ? $_GET['create'] : '';
+$agenda_id = isset($_GET['id']) ? $_GET['id'] : '';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -59,15 +61,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo=$_POST["tipo"];
         $dataVal=$_POST["create"];
         $dataExp=$_POST["dataExp"];
+        $agenda_id =$_POST["agenda_id"];
 
-        $sql="INSERT INTO tbvisto(nome,data_Nasc,sexo,country,entrada,tipo,foto,data_create,data_exp)
-              VALUES('$nome','$dataNasc','$sexo','$country','$entrada','$tipo','$foto','$dataVal','$dataExp')";
+
+        $sql="INSERT INTO tbvisto(nome,data_Nasc,sexo,country,entrada,tipo,foto,data_create, data_exp, id )
+              VALUES('$nome','$dataNasc','$sexo','$country','$entrada','$tipo','$foto','$dataVal','$dataExp', ' $agenda_id')";
 
         mysqli_query($conexao, $sql);
 
         mysqli_query($conexao, "UPDATE tbagenda SET estado='Aprovado' WHERE id='$id'");
 
-        header("Location: page.php?id=$id&nome=$nome&dataNasc=$dataNasc&sexo=$sexo&country=$country&entrada=$entrada&tipo=$tipo&foto=$foto&create=$dataVal&dataExp=$dataExp");
+        header("Location: page.php?id=$id&nome=$nome&dataNasc=$dataNasc&sexo=$sexo&country=$country&entrada=$entrada&tipo=$tipo&foto=$foto&create=$dataVal&dataExp=$dataExp&agenda_id=$agenda_id");
         exit;
     }
   }
@@ -157,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control btnOnly" name="nome" value="<?php echo htmlspecialchars($nome); ?>" readonly>
                     <input type="hidden" class="form-control" name="id" value="<?php echo htmlspecialchars($id); ?>" readonly>
+                    <input type="hidden" class="form-control" name="agenda_id" value="<?php echo htmlspecialchars($agenda_id); ?>" readonly>
                   </div>
                   <div class="form-group mt-3">
                     <label for="dataNasc">Data de Nascimento</label>
@@ -177,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" class="form-control" name="create" value="<?php echo htmlspecialchars($create); ?>" readonly>
                   </div>
                   <div class="form-group mt-3">
-                    <label for="sexo">Data de Expiração</label>
+                    <label for="dataExp">Data de Expiração</label>
                     <input type="date" class="form-control" name="dataExp" required>
                   </div>
                   <div class="modal-footer">

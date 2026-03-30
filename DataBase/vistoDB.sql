@@ -37,5 +37,8 @@ entrada VARCHAR(50),
 tipo VARCHAR(50),
 foto VARCHAR(255),
 data_create date,
-data_exp date
+data_exp date,
+FOREIGN KEY (id) REFERENCES usuario(id) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE
 );

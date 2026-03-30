@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Caso o usuário não esteja logado, redireciona para o index
   include('./php/verificar_login.php');

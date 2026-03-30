@@ -18,7 +18,7 @@ if (!isset($_SESSION["username"])) {
 }
 
 
-$foto = isset($_GET['foto']) ? $_GET['foto'] : '';
+$imagem = isset($_GET['imagem']) ? $_GET['imagem'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $nome = isset($_GET['nome']) ? $_GET['nome'] : '';
 $dataNasc = isset($_GET['dataNasc']) ? $_GET['dataNasc'] : '';
@@ -28,6 +28,17 @@ $entrada = isset($_GET['entrada']) ? $_GET['entrada'] : '';
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $create = isset($_GET['create']) ? $_GET['create'] : '';
 $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
+
+
+$sql = "SELECT * FROM tbvisto WHERE id = $id";
+$result = mysqli_query($conexao, $sql);
+
+// 3. Extrair os dados (apenas um registo)
+$dados = mysqli_fetch_assoc($result);
+
+// 4. Verificar se o registo existe antes de exibir
+$data_exp = $dados ? $dados['data_exp'] : "Não encontrada";
+
 
 ?>
 
@@ -50,20 +61,20 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
   <!-- ===============================================-->
   <!--    Favicons-->
   <!-- ===============================================-->
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
-  <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
-  <link rel="manifest" href="../assets/img/favicons/manifest.json">
-  <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="./assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="./assets/img/favicons/mstile-150x150.png">
   <meta name="theme-color" content="#ffffff">
 
 
   <!-- ===============================================-->
   <!--    Stylesheets-->
   <!-- ===============================================-->
-  <link href="../assets/css/theme.css" rel="stylesheet" />
-  <link href="../assets/css/style.css" rel="stylesheet" />
+  <link href="./assets/css/theme.css" rel="stylesheet" />
+  <link href="./assets/css/style.css" rel="stylesheet" />
 
 </head>
 
@@ -79,11 +90,11 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
-            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#service">Serviços</a></li>
-            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="home.php#booking">Sobre</a></li>
-            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="admContacto.php">Contacto</a></li>
-            <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="../php/logout.php">Log out</a></li>
-            <li class="nav-item dropdown px-3 px-lg-0"> <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">EN</a>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="index.php#service">Serviços</a></li>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="vistoManager.php">Agendamento</a></li>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="index.php#booking">Sobre</a></li>
+            <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="contacto.php">Contacto</a></li>
+            <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark fw-medium" href="php/logout.php">Log out</a></li>
               <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#!">EN</a></li>
                 <li><a class="dropdown-item" href="#!">PT</a></li>
@@ -103,12 +114,12 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
           <div class="row justify-content-center w-55">
 
             <form method="POST" enctype="multipart/form-data">
-              <div class="card mb-0 w-100 vh-50" id="printable-card" style="background: url(../assets/img/images.jpeg); background-repeat: no-repeat; background-size: cover; background-position: center;">
+              <div class="card mb-0 w-100 vh-50" id="printable-card" style="background: url(./assets/img/images.jpeg); background-repeat: no-repeat; background-size: cover; background-position: center;">
                 <h2 class="text-center mt-2 fs-5 text-dark">Visto Passport</h2>
                 <div class="card-body d-flex mt-1 ">
 
                   <div class="form-group ms-2 mb-4">
-                    <img src="../img/<?php echo htmlspecialchars($foto); ?>" height="200" width="200">
+                    <img src="./img/<?php echo htmlspecialchars($imagem); ?>" height="200" width="200">
                   </div>
 
                   <div class="form-group p-2 ms-2 ">
@@ -135,7 +146,7 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
                     <h5>Nacionalidade: </h5>
                     <p class="text-dark"><?php echo htmlspecialchars($country); ?></p>
                     <h5>Data de Expiração: </h5>
-                    <p class="text-dark"><?php echo htmlspecialchars($dataExp); ?></p>
+                    <p class="text-dark"><?php echo $data_exp; ?></p>
                   </div>
 
                 </div>
@@ -145,9 +156,9 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
             </form>
 
             <div class="mt-5">
-              <a href="admin.php">
-                <button type="button" class="btn btn-secondary">Enviar</button>
-              </a>
+              <a href="imprimir.php">
+              <button type="button" class="btn btn-danger" onclick="printCard()">Imprimir</button>
+            </a>
             </div>
 
           </div>
@@ -191,7 +202,7 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
           <div class="col-lg-3 col-md-5 col-12 mb-4 mb-md-6 mb-lg-0 order-lg-4 order-md-1">
             <div class="icon-group mb-4"> <a class="text-decoration-none icon-item shadow-social" id="facebook" href="#!"><i class="fab fa-facebook-f"> </i></a><a class="text-decoration-none icon-item shadow-social" id="instagram" href="#!"><i class="fab fa-instagram"> </i></a><a class="text-decoration-none icon-item shadow-social" id="twitter" href="#!"><i class="fab fa-twitter"> </i></a></div>
             <h4 class="fw-medium font-sans-serif text-secondary mb-3">Discover our app</h4>
-            <div class="d-flex align-items-center"> <a href="#!"> <img class="me-2" src="../assets/img/play-store.png" alt="play store" /></a><a href="#!"> <img src="../assets/img/apple-store.png" alt="apple store" /></a></div>
+            <div class="d-flex align-items-center"> <a href="#!"> <img class="me-2" src="../assets/img/play-store.png" alt="play store" /></a><a href="#!"> <img src="./assets/img/apple-store.png" alt="apple store" /></a></div>
           </div>
         </div>
       </div><!-- end of .container-->
@@ -215,14 +226,14 @@ $dataExp = isset($_GET['dataExp']) ? $_GET['dataExp'] : '';
   <!-- ===============================================-->
   <!--    JavaScripts-->
   <!-- ===============================================-->
-  <script src="../vendors/@popperjs/popper.min.js"></script>
-  <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-  <script src="../vendors/is/is.min.js"></script>
+  <script src="./vendors/@popperjs/popper.min.js"></script>
+  <script src="./vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="./vendors/is/is.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-  <script src="../vendors/fontawesome/all.min.js"></script>
-  <script src="../assets/js/theme.js"></script>
+  <script src="./vendors/fontawesome/all.min.js"></script>
+  <script src="./assets/js/theme.js"></script>
 
-  <script src="../assets/js/print.js"></script>
+  <script src="./assets/js/print.js"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap" rel="stylesheet">
 </body>

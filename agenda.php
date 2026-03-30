@@ -4,9 +4,6 @@ $user="root";
 $password="";
 $db="visto_db";
 
-session_start();
-
-
 $conexao=mysqli_connect($host,$user,$password,$db);
 
 if($conexao===false){
@@ -22,6 +19,8 @@ if(!isset($_SESSION["username"])){
 	header("location:login.php");
 	exit;
 }
+
+$editar=0;
 
 ?>
 
